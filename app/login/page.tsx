@@ -36,7 +36,7 @@ export default function Login() {
                         Forgot password?
                     </Link>
                     <Link className="w-full text-sm text-muted-foreground" href="/signup">
-                        Don't have an account? Signup
+                        Don&apos;t have an account? Signup
                     </Link>
                 </CardFooter>
             </Card>

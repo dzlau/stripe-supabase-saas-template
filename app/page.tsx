@@ -90,7 +90,7 @@ export default function LandingPage() {
                       <Star key={i} className="w-5 h-5 fill-primary text-primary" />
                     ))}
                   </div>
-                  <p className="text-muted-foreground mb-2">"This product has revolutionized our workflow. Highly recommended!"</p>
+                  <p className="text-muted-foreground mb-2">&quot;This product has revolutionized our workflow. Highly recommended!&quot;</p>
                   <p className="font-semibold">- Sarah J., CEO</p>
                 </CardContent>
               </Card>
@@ -101,7 +101,7 @@ export default function LandingPage() {
                       <Star key={i} className="w-5 h-5 fill-primary text-primary" />
                     ))}
                   </div>
-                  <p className="text-muted-foreground mb-2">"Wow everything is already integrated! Less time configuring, more time building!."</p>
+                  <p className="text-muted-foreground mb-2">&quot;Wow everything is already integrated! Less time configuring, more time building!.&quot;</p>
                   <p className="font-semibold">- Mark T., CTO</p>
                 </CardContent>
               </Card>
@@ -112,7 +112,7 @@ export default function LandingPage() {
                       <Star key={i} className="w-5 h-5 fill-primary text-primary" />
                     ))}
                   </div>
-                  <p className="text-muted-foreground mb-2">"We've seen a 200% increase in productivity since implementing this solution."</p>
+                  <p className="text-muted-foreground mb-2">&quot;We&aposve seen a 200% increase in productivity since implementing this solution.&quot;</p>
                   <p className="font-semibold">- Emily R., Operations Manager</p>
                 </CardContent>
               </Card>
