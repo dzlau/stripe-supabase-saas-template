@@ -2,6 +2,21 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 
 ## Getting Started
 
+Create an account on Supabase
+
+
+### Setup Social Auth
+You can easily set up social auth with this template. First navigate to google cloud and create a new project 
+
+1. Follow these [instructions](https://supabase.io/docs/guides/auth#signing-in-with-google) to set up Google OAuth.
+2. Create a new project.
+3. Go to https://console.cloud.google.com/apis/credentials/consent
+
+## Setup Stripe
+1. Regiter
+2. Creat Product
+3. Create Pricing Table
+4. Add Pkey and pricing table id to env
 First, run the development server:
 
 ```bash
@@ -13,6 +28,7 @@ pnpm dev
 # or
 bun dev
 ```
+
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
