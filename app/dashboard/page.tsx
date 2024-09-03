@@ -10,5 +10,11 @@ export default async function Dashboard() {
         redirect('/login')
     }
 
-    return <p>Hello {data.user.email}</p>
+    return (
+        <main className="flex-1">
+            <div className="container">
+                Hello {data.user.email}
+            </div>
+        </main>)
+
 }
