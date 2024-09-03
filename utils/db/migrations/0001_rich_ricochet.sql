@@ -1,0 +1,1 @@
+ALTER TABLE "users_table" ADD COLUMN "stripe_id" text NOT NULL;
