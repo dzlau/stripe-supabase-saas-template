@@ -2,8 +2,16 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 
 ## Getting Started
 
-Create an account on Supabase
+### Setup Supabase
+1. Create a new project on [Supabase](https://app.supabase.io/)
+2. ADD `SUPABASE_URL` and `SUPABASE_ANON_KEY` to your .env file
+3. [testest | dzlau's Org | Supabase](https://supabase.com/dashboard/project/dxlqyucbmmmbkygiszdm)
 
+
+#### Setup redirect url
+1. Go to Supabase dashboard
+2. Go to Authentication > Url Configuration
+3. Place production url into "Site URL"
 
 ### Setup Google OAUTH Social Auth
 You can easily set up social auth with this template. First navigate to google cloud and create a new project. All code is written. You just need to add the OAUTH_CLIENT_ID and OAUTH_CLIENT_SECRET to your .env file.
@@ -17,9 +25,11 @@ You can easily set up social auth with this template. First navigate to google c
 
 ## Setup Stripe
 1. Regiter
-2. Creat Product
-3. Create Pricing Table
-4. Add Pkey and pricing table id to env
+2. get your stripe api test key and add it to .env.local
+3. open up `stripeSetup.ts` and change your product information
+4. run `node --env-file=.env.local stripeSetup.ts` to setup your Stripe product
+6. Create Pricing Table
+7. Add public key and pricing table id to .env.local
 First, run the development server:
 
 ```bash
