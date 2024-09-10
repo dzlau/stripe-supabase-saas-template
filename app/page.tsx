@@ -173,7 +173,7 @@ export default function LandingPage() {
                   </ul>
                 </CardContent>
                 <CardFooter>
-                  <Button className="w-full">Start a 7 day Trial</Button>
+                  <Button className="w-full">Get Started</Button>
                 </CardFooter>
               </Card>
               <Card>
@@ -199,7 +199,7 @@ export default function LandingPage() {
                   </ul>
                 </CardContent>
                 <CardFooter>
-                  <Button className="w-full">Start a 7 Day Trial</Button>
+                  <Button className="w-full">Get Started</Button>
                 </CardFooter>
               </Card>
             </div>
