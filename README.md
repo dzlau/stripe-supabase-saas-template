@@ -39,22 +39,22 @@ You can easily set up social auth with this template. First navigate to google c
 
 ### Setup Stripe
 
-In order to collect payments and setup subscriptions for your users, we will be making use of [Stripe Checkout](https://stripe.com/payments/checkout) and [Stripe Pricing Tables](https://docs.stripe.com/payments/checkout/pricing-table)
+In order to collect payments and setup subscriptions for your users, we will be making use of [Stripe Checkout](https://stripe.com/payments/checkout) and [Stripe Pricing Tables](https://docs.stripe.com/payments/checkout/pricing-table) and [Stripe Webhooks](https://docs.stripe.com/webhooks)
 
 1. [Register for Stripe](https://dashboard.stripe.com/register)
-2. get your `STRIPE_SECRET_KEY` key and add it to `.env.local`. Stripe has both a Test and Production API key. Once you verify your business on Stripe, you will be able to get access to production mode. But until then, we can use [Stripe's Test Mode](https://docs.stripe.com/test-mode) to build our app
+2. get your `STRIPE_SECRET_KEY` key and add it to `.env.local`. Stripe has both a Test and Production API key. Once you verify your business on Stripe, you will be able to get access to production mode in `.env.production`. But until then, we can use [Stripe's Test Mode](https://docs.stripe.com/test-mode) to build our app
 
 ![image](https://github.com/user-attachments/assets/01da4beb-ae1d-45df-9de8-ca5e2b2c3470)
 
 4. Open up `stripeSetup.ts` and change your product information
-5. run `node --env-file=.env.local stripeSetup.ts` to setup your Stripe product
+5. run `node --env-file=.env.local stripeSetup.ts` to setup your Stripe product(replace `.env.local` with `.env.production` to create in production once Stripe validation passes)
 6. [Create a new Pricing Table](https://dashboard.stripe.com/test/pricing-tables) and add your newly created products
 7. When creating your new Pricing Table, set the *Confirmation Page* to *Don't show confirmation page*. Add `[http://localhost:3000](http://localhost:3000/dashboard)` as the value. This will redirect the user to your main dashboard when they have completed their checkout. For prod, this will be your public url
 
 ![image](https://github.com/user-attachments/assets/af8e9dda-3297-4e04-baa0-de7eac2a1579)
 
 
-9. Add `STRIPE_PUBLISHABLE_KEY` and `STRIPE_PRICING_TABLE_ID` to `.env.local`
+9. Add `STRIPE_PUBLISHABLE_KEY` and `STRIPE_PRICING_TABLE_ID` to `.env.local`(replace `.env.local` with `.env.production` to create in production once Stripe validation passes)
 
 ![image](https://github.com/user-attachments/assets/3b1a53d3-d2d4-4523-9e0e-87b63d9108a8)
 
