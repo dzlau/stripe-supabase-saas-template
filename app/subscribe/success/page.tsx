@@ -5,6 +5,7 @@ import Image from 'next/image'
 
 import ProviderSigninBlock from '@/components/ProviderSigninBlock'
 import LoginForm from "@/components/LoginForm"
+import { Button } from "@/components/ui/button"
 export default function SubscribeSuccess() {
     return (
         <div className="flex items-center justify-center bg-muted min-h-screen">
@@ -21,9 +22,11 @@ export default function SubscribeSuccess() {
                 </CardHeader>
 
                 <CardFooter className="flex-col text-center">
-                    <Link className="w-full text-sm text-muted-foreground " href="/dashboard">
-                        Go To Dashboard
-                    </Link>
+                    <Button className="w-full text-sm text-muted-foreground " >
+                        <Link href="/dashboard">
+                            Go To Dashboard
+                        </Link>
+                    </Button>
                 </CardFooter>
             </Card>
         </div >
