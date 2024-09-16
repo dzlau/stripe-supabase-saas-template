@@ -22,7 +22,7 @@ export default function SubscribeSuccess() {
                 </CardHeader>
 
                 <CardFooter className="flex-col text-center">
-                    <Button className="w-full text-sm text-muted-foreground " >
+                    <Button className="w-full text-sm " >
                         <Link href="/dashboard">
                             Go To Dashboard
                         </Link>
