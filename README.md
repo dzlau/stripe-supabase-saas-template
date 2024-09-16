@@ -41,7 +41,7 @@ In order to collect payments and setup subscriptions for your users, we will be 
 ![image](https://github.com/user-attachments/assets/01da4beb-ae1d-45df-9de8-ca5e2b2c3470)
 
 4. Open up `stripeSetup.ts` and change your product information
-5. run `node --env-file=.env.local stripeSetup.ts` to setup your Stripe product
+5. run `node --env-file=.env.local stripeSetup.ts` to setup your Stripe product(replace `.env.local` with `.env.production` to create in production once Stripe validation passes)
 6. [Create a new Pricing Table](https://dashboard.stripe.com/test/pricing-tables) and add your newly created products
 7. When creating your new Pricing Table, set the *Confirmation Page* to *Don't show confirmation page*. Add `[http://localhost:3000](http://localhost:3000/dashboard)` as the value. This will redirect the user to your main dashboard when they have completed their checkout. For prod, this will be your public url
 

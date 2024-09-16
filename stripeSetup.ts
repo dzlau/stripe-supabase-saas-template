@@ -1,7 +1,7 @@
 const Stripe = require('stripe');
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY)
 
-
+const PUBLIC_URL = process.env.NEXT_PUBLIC_WEBSITE_URL
 const currencyType = 'usd'
 const plans = [
     {
@@ -46,3 +46,10 @@ plans.forEach(async (plan) => {
     });
     await stripe.products.update(product.id, { 'default_price': price.id })
 })
+// Add webhook
+stripe.webhookEndpoints.create({
+    enabled_events: ['customer.subscription.created',
+        'customer.subscription.deleted',
+        'customer.subscription.updated'],
+    url: `${PUBLIC_URL}/webhook/stripe`,
+});
