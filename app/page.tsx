@@ -74,7 +74,7 @@ export default function LandingPage() {
                   <Database className="h-6 w-6 text-primary" />
                 </div>
                 <h3 className="text-xl font-bold">Database</h3>
-                <p className="text-muted-foreground text-center">Hook into any preexisting PostgresDB or MongoDB</p>
+                <p className="text-muted-foreground text-center">Hook into any PostgresDB instance</p>
               </div>
             </div>
           </div>
