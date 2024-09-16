@@ -39,7 +39,7 @@ You can easily set up social auth with this template. First navigate to google c
 
 ### Setup Stripe
 
-In order to collect payments and setup subscriptions for your users, we will be making use of [Stripe Checkout](https://stripe.com/payments/checkout) and [Stripe Pricing Tables](https://docs.stripe.com/payments/checkout/pricing-table)
+In order to collect payments and setup subscriptions for your users, we will be making use of [Stripe Checkout](https://stripe.com/payments/checkout) and [Stripe Pricing Tables](https://docs.stripe.com/payments/checkout/pricing-table) and [Stripe Webhooks]()
 
 1. [Register for Stripe](https://dashboard.stripe.com/register)
 2. get your `STRIPE_SECRET_KEY` key and add it to `.env.local`. Stripe has both a Test and Production API key. Once you verify your business on Stripe, you will be able to get access to production mode. But until then, we can use [Stripe's Test Mode](https://docs.stripe.com/test-mode) to build our app
@@ -54,7 +54,7 @@ In order to collect payments and setup subscriptions for your users, we will be 
 ![image](https://github.com/user-attachments/assets/af8e9dda-3297-4e04-baa0-de7eac2a1579)
 
 
-9. Add `STRIPE_PUBLISHABLE_KEY` and `STRIPE_PRICING_TABLE_ID` to `.env.local`
+9. Add `STRIPE_PUBLISHABLE_KEY` and `STRIPE_PRICING_TABLE_ID` to `.env.local`(replace `.env.local` with `.env.production` to create in production once Stripe validation passes)
 
 ![image](https://github.com/user-attachments/assets/3b1a53d3-d2d4-4523-9e0e-87b63d9108a8)
 
