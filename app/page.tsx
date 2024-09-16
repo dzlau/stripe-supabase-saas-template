@@ -147,7 +147,9 @@ export default function LandingPage() {
                   </ul>
                 </CardContent>
                 <CardFooter>
-                  <Button className="w-full">Sign Up</Button>
+                  <Link className="text-sm font-medium hover:underline underline-offset-4" href="/signup">
+                    <Button className="w-full">Get Started</Button>
+                  </Link>
                 </CardFooter>
               </Card>
               <Card>
@@ -173,7 +175,9 @@ export default function LandingPage() {
                   </ul>
                 </CardContent>
                 <CardFooter>
-                  <Button className="w-full">Get Started</Button>
+                  <Link className="text-sm font-medium hover:underline underline-offset-4" href="/signup">
+                    <Button className="w-full">Get Started</Button>
+                  </Link>
                 </CardFooter>
               </Card>
               <Card>
@@ -199,7 +203,9 @@ export default function LandingPage() {
                   </ul>
                 </CardContent>
                 <CardFooter>
-                  <Button className="w-full">Get Started</Button>
+                  <Link className="text-sm font-medium hover:underline underline-offset-4" href="/signup">
+                    <Button className="w-full">Get Started</Button>
+                  </Link>
                 </CardFooter>
               </Card>
             </div>
