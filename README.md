@@ -44,12 +44,12 @@ Add `DATABASE_URL` to `.env` file e.g `postgresql://${USER}:${PASSWORD}@xxxx.us-
 
 
 #### Setup Google OAUTH Social Auth
-You can easily set up social auth with this template. First navigate to google cloud and create a new project. All code is written. You just need to add the `OAUTH_CLIENT_ID` and `OAUTH_CLIENT_SECRET` to your `.env` file.
+You can easily set up social auth with this template. First navigate to google cloud and create a new project. All code is written. You just need to add the `GOOGLE_OAUTH_CLIENT_ID` and `GOOGLE_OAUTH_CLIENT_SECRET` to your `.env` file.
 
 1. Follow these [instructions](https://supabase.com/docs/guides/auth/social-login/auth-google?queryGroups=environment&environment=server) to set up Google OAuth.
 
 #### Setup Github OAUTH Social Auth
-You can easily set up social auth with this template. First navigate to google cloud and create a new project. All code is written. You just need to add the `OAUTH_CLIENT_ID` and `OAUTH_CLIENT_SECRET` to your `.env` file.
+You can easily set up social auth with this template. First navigate to google cloud and create a new project. All code is written. You just need to add the `GITHUB_OAUTH_CLIENT_ID` and `GITHUB_OAUTH_CLIENT_SECRET` to your `.env` file.
 
 1. Follow these [instructions](https://supabase.com/docs/guides/auth/social-login/auth-github?queryGroups=environment&environment=server) to set up Github OAuth.
 
