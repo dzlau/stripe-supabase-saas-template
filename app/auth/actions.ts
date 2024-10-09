@@ -5,7 +5,7 @@ import { revalidatePath } from 'next/cache'
 import { createStripeCustomer } from '@/utils/stripe/api'
 import { db } from '@/utils/db/db'
 import { usersTable } from '@/utils/db/schema'
-
+const PUBLIC_URL = process.env.NEXT_PUBLIC_WEBSITE_URL ? process.env.NEXT_PUBLIC_WEBSITE_URL : "http://localhost:3000"
 export async function resetPassword(currentState: { message: string }, formData: FormData) {
 
     const supabase = createClient()
@@ -34,7 +34,7 @@ export async function forgotPassword(currentState: { message: string }, formData
 
     const supabase = createClient()
     const email = formData.get('email') as string
-    const { data, error } = await supabase.auth.resetPasswordForEmail(email, { redirectTo: `${process.env.NEXT_PUBLIC_WEBSITE_URL}/forgot-password/reset` })
+    const { data, error } = await supabase.auth.resetPasswordForEmail(email, { redirectTo: `${PUBLIC_URL}/forgot-password/reset` })
 
     if (error) {
         return { message: error.message }
@@ -103,7 +103,7 @@ export async function signInWithGoogle() {
     const { data, error } = await supabase.auth.signInWithOAuth({
         provider: 'google',
         options: {
-            redirectTo: `${process.env.NEXT_PUBLIC_WEBSITE_URL}/auth/callback`,
+            redirectTo: `${PUBLIC_URL}/auth/callback`,
         },
     })
 
@@ -118,7 +118,7 @@ export async function signInWithGithub() {
     const { data, error } = await supabase.auth.signInWithOAuth({
         provider: 'github',
         options: {
-            redirectTo: `${process.env.NEXT_PUBLIC_WEBSITE_URL}/auth/callback`,
+            redirectTo: `${PUBLIC_URL}/auth/callback`,
         },
     })
 
