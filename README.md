@@ -1,15 +1,24 @@
-<img width="1151" alt="image" src="https://github.com/user-attachments/assets/f5a8d685-9347-436f-a9ac-90a477520cab"><img width="920" alt="image" src="https://github.com/user-attachments/assets/55384d22-cd09-46e4-b92d-e535b7d948fd">
+<img width="1122" alt="image" src="https://github.com/user-attachments/assets/63e761c4-aece-47c2-a320-f1cc18bf916b">
+
+<img width="920" alt="image" src="https://github.com/user-attachments/assets/55384d22-cd09-46e4-b92d-e535b7d948fd">
 <img width="1115" alt="image" src="https://github.com/user-attachments/assets/9ec724e6-d46f-4849-a790-efca329d1102">
-![image](https://github.com/user-attachments/assets/5d8fcc52-532f-4e5d-99a6-055fc548459a)
-
-
+<img width="1115" alt="image" src="https://github.com/user-attachments/assets/c5c1a61b-7ff3-49fd-9dea-8104026dd1e6">
 <img width="1141" alt="image" src="https://github.com/user-attachments/assets/06559a5a-ca19-40bb-bf00-d3d2cbd94ee1">
 
 
 
 
 
-This is the ultimate [Next.js](https://nextjs.org/) SAAS starter kit that includes a landing page, integrations with Supabase auth(Oauth, forget password, etc), PostgresDB with DrizzleORM and Stripe to collect payments, setup subscriptions and allow users to edit subscriptions/payment options. 
+This is the ultimate [Next.js](https://nextjs.org/) SAAS starter kit that includes a landing page, integrations with Supabase auth(Oauth, forget password, etc), PostgresDB with DrizzleORM and Stripe to collect payments, setup subscriptions and allow users to edit subscriptions/payment options.
+
+- Full sign up/ sign in/ logout/ forget password/ password reset flow
+- Oauth with Google and Github
+- Utilize Stripe Pricing Table and Stripe Checkout to setup customer billing
+- Integration with Stripe Customer Portal to allow users to manage billing settings
+- Protected routes under /dashboard
+- Drizzle ORM/Postgres integration
+- Tailwind CSS/shadcn
+- Stripe webhooks/ API hook to get customer current plan
 
 ## Getting Started
 
@@ -35,12 +44,12 @@ Add `DATABASE_URL` to `.env` file e.g `postgresql://${USER}:${PASSWORD}@xxxx.us-
 
 
 #### Setup Google OAUTH Social Auth
-You can easily set up social auth with this template. First navigate to google cloud and create a new project. All code is written. You just need to add the `OAUTH_CLIENT_ID` and `OAUTH_CLIENT_SECRET` to your `.env` file.
+You can easily set up social auth with this template. First navigate to google cloud and create a new project. All code is written. You just need to add the `GOOGLE_OAUTH_CLIENT_ID` and `GOOGLE_OAUTH_CLIENT_SECRET` to your `.env` file.
 
 1. Follow these [instructions](https://supabase.com/docs/guides/auth/social-login/auth-google?queryGroups=environment&environment=server) to set up Google OAuth.
 
 #### Setup Github OAUTH Social Auth
-You can easily set up social auth with this template. First navigate to google cloud and create a new project. All code is written. You just need to add the `OAUTH_CLIENT_ID` and `OAUTH_CLIENT_SECRET` to your `.env` file.
+You can easily set up social auth with this template. First navigate to google cloud and create a new project. All code is written. You just need to add the `GITHUB_OAUTH_CLIENT_ID` and `GITHUB_OAUTH_CLIENT_SECRET` to your `.env` file.
 
 1. Follow these [instructions](https://supabase.com/docs/guides/auth/social-login/auth-github?queryGroups=environment&environment=server) to set up Github OAuth.
 
@@ -56,7 +65,7 @@ In order to collect payments and setup subscriptions for your users, we will be 
 4. Open up `stripeSetup.ts` and change your product information
 5. run `node --env-file=.env stripeSetup.ts` to setup your Stripe product
 6. [Create a new Pricing Table](https://dashboard.stripe.com/test/pricing-tables) and add your newly created products
-7. When creating your new Pricing Table, set the *Confirmation Page* to *Don't show confirmation page*. Add [YOUR_PUBLIC_URL/dashboard](YOUR_PUBLIC_URL/dashboard) as the value(use [http://localhost:3000](http://localhost:3000) for local development). This will redirect the user to your main dashboard when they have completed their checkout. For prod, this will be your public url
+7. When creating your new Pricing Table, set the *Confirmation Page* to *Don't show confirmation page*. Add [YOUR_PUBLIC_URL/subscribe/success](YOUR_PUBLIC_URL/subscribe/success) as the value(use [http://localhost:3000/subscribe/success](http://localhost:3000/subscribe/success) for local development). This will redirect the user to your main dashboard when they have completed their checkout. For prod, this will be your public url
 
 ![image](https://github.com/user-attachments/assets/af8e9dda-3297-4e04-baa0-de7eac2a1579)
 
