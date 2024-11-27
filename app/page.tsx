@@ -1,10 +1,44 @@
-
 import { Button } from "@/components/ui/button"
 import Image from "next/image"
 import { Card, CardContent, CardHeader, CardTitle, CardDescription, CardFooter } from "@/components/ui/card"
 import Link from "next/link"
 import { Star, Check, Coins, UserCheck, Database } from "lucide-react"
-export default function LandingPage() {
+import Stripe from 'stripe'
+
+// Types
+interface StripeProduct {
+  id: string;
+  name: string;
+  description: string | null;
+  features: string[];
+  price: Stripe.Price;
+}
+
+// This makes the page dynamic instead of static
+export const revalidate = 3600 // Revalidate every hour
+
+async function getStripeProducts(): Promise<StripeProduct[]> {
+  const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
+    apiVersion: '2024-06-20'
+  });
+
+  const products = await stripe.products.list({
+    active: true,
+    expand: ['data.default_price']
+  });
+
+  return products.data.map(product => ({
+    id: product.id,
+    name: product.name,
+    description: product.description,
+    features: product.metadata?.features ? JSON.parse(product.metadata.features) : [],
+    price: product.default_price as Stripe.Price
+  }));
+}
+
+export default async function LandingPage() {
+  const products = await getStripeProducts();
+
   return (
     <div className="flex flex-col min-h-[100dvh]">
       <header className="px-4 lg:px-6 h-16 flex items-center  bg-white border-b fixed border-b-slate-200 w-full">
@@ -124,90 +158,37 @@ export default function LandingPage() {
             <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl text-center mb-4">Pricing Plans</h2>
             <p className="text-muted-foreground text-center mb-8 md:text-xl">Choose the perfect plan for your needs</p>
             <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-              <Card>
-                <CardHeader>
-                  <CardTitle>Hobby</CardTitle>
-                  <CardDescription>For individuals and small teams</CardDescription>
-                </CardHeader>
-                <CardContent>
-                  <p className="text-3xl font-bold">Free</p>
-                  <ul className="mt-4 space-y-2">
-                    <li className="flex items-center">
-                      <Check className="mr-2 h-4 w-4 text-primary" />
-                      Up to 2 users
-                    </li>
-                    <li className="flex items-center">
-                      <Check className="mr-2 h-4 w-4 text-primary" />
-                      Basic analytics
-                    </li>
-                    <li className="flex items-center">
-                      <Check className="mr-2 h-4 w-4 text-primary" />
-                      24/7 support
-                    </li>
-                  </ul>
-                </CardContent>
-                <CardFooter>
-                  <Link className="text-sm font-medium hover:underline underline-offset-4" href="/signup">
-                    <Button className="w-full">Get Started</Button>
-                  </Link>
-                </CardFooter>
-              </Card>
-              <Card>
-                <CardHeader>
-                  <CardTitle>Team</CardTitle>
-                  <CardDescription>For growing businesses</CardDescription>
-                </CardHeader>
-                <CardContent>
-                  <p className="text-3xl font-bold">$49/month</p>
-                  <ul className="mt-4 space-y-2">
-                    <li className="flex items-center">
-                      <Check className="mr-2 h-4 w-4 text-primary" />
-                      Up to 20 users
-                    </li>
-                    <li className="flex items-center">
-                      <Check className="mr-2 h-4 w-4 text-primary" />
-                      Advanced analytics
-                    </li>
-                    <li className="flex items-center">
-                      <Check className="mr-2 h-4 w-4 text-primary" />
-                      Priority support
-                    </li>
-                  </ul>
-                </CardContent>
-                <CardFooter>
-                  <Link className="text-sm font-medium hover:underline underline-offset-4" href="/signup">
-                    <Button className="w-full">Get Started</Button>
-                  </Link>
-                </CardFooter>
-              </Card>
-              <Card>
-                <CardHeader>
-                  <CardTitle>Pro</CardTitle>
-                  <CardDescription>For large-scale organizations</CardDescription>
-                </CardHeader>
-                <CardContent>
-                  <p className="text-3xl font-bold">Custom</p>
-                  <ul className="mt-4 space-y-2">
-                    <li className="flex items-center">
-                      <Check className="mr-2 h-4 w-4 text-primary" />
-                      Unlimited users
-                    </li>
-                    <li className="flex items-center">
-                      <Check className="mr-2 h-4 w-4 text-primary" />
-                      Custom analytics
-                    </li>
-                    <li className="flex items-center">
-                      <Check className="mr-2 h-4 w-4 text-primary" />
-                      Dedicated support
-                    </li>
-                  </ul>
-                </CardContent>
-                <CardFooter>
-                  <Link className="text-sm font-medium hover:underline underline-offset-4" href="/signup">
-                    <Button className="w-full">Get Started</Button>
-                  </Link>
-                </CardFooter>
-              </Card>
+              {products.map((product) => (
+                <Card key={product.id}>
+                  <CardHeader>
+                    <CardTitle>{product.name}</CardTitle>
+                    <CardDescription>{product.description}</CardDescription>
+                  </CardHeader>
+                  <CardContent>
+                    <p className="text-3xl font-bold">
+                      {product.price.unit_amount 
+                        ? `$${(product.price.unit_amount / 100).toFixed(2)}/${product.price.recurring?.interval}`
+                        : 'Custom'}
+                    </p>
+                    <ul className="mt-4 space-y-2">
+                      {product.features?.map((feature, index) => (
+                        <li key={index} className="flex items-center">
+                          <Check className="mr-2 h-4 w-4 text-primary" />
+                          {feature}
+                        </li>
+                      ))}
+                    </ul>
+                  </CardContent>
+                  <CardFooter>
+                    <Link 
+                      className="text-sm font-medium hover:underline underline-offset-4 w-full" 
+                      href={`/signup?plan=${product.id}`}
+                    >
+                      <Button className="w-full">Get Started</Button>
+                    </Link>
+                  </CardFooter>
+                </Card>
+              ))}
             </div>
           </div>
         </section>

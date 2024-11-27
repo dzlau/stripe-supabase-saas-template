@@ -4,20 +4,19 @@ const Stripe = require('stripe');
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
 
 // Types
-interface Feature {
-    name: string;
-}
-
 interface Plan {
     name: string;
     price: number;
-    features: Feature[];
+    description: string;
+    features: string[];
 }
 
 interface StripeProduct {
     id: string;
     name: string;
-    features?: string[];
+    metadata?: {
+        features?: string;
+    };
 }
 
 interface WebhookEndpoint {
@@ -34,28 +33,31 @@ const plans: Plan[] = [
     {
         name: IS_PRODUCTION ? 'Basic' : 'Basic-Test',
         price: 1000, // price in cents
+        description: 'Perfect for small teams and individuals',
         features: [
-            { name: 'Upto 10 users' },
-            { name: 'Upto 1000 records' },
-            { name: 'Upto 1000 API calls' }
+            'Up to 10 users',
+            'Up to 1000 records',
+            'Up to 1000 API calls'
         ]
     },
     {
         name: IS_PRODUCTION ? 'Pro' : 'Pro-Test',
         price: 2000,
+        description: 'Great for growing teams',
         features: [
-            { name: 'Upto 100 users' },
-            { name: 'Upto 10000 records' },
-            { name: 'Upto 10000 API calls' }
+            'Up to 100 users',
+            'Up to 10000 records',
+            'Up to 10000 API calls'
         ]
     },
     {
         name: IS_PRODUCTION ? 'Enterprise' : 'Enterprise-Test',
         price: 5000,
+        description: 'For large organizations',
         features: [
-            { name: 'Unlimited users' },
-            { name: 'Unlimited records' },
-            { name: 'Unlimited API calls' }
+            'Unlimited users',
+            'Unlimited records',
+            'Unlimited API calls'
         ]
     }
 ];
@@ -70,9 +72,21 @@ async function createProduct(plan: Plan): Promise<StripeProduct> {
         // Create new product if it doesn't exist
         product = await stripe.products.create({
             name: plan.name,
-            features: plan.features.map(f => f.name)
+            description: plan.description,
+            metadata: {
+                features: JSON.stringify(plan.features)
+            }
         });
         console.log(`Created product: ${plan.name}`);
+    } else {
+        // Update existing product's features
+        product = await stripe.products.update(product.id, {
+            description: plan.description,
+            metadata: {
+                features: JSON.stringify(plan.features)
+            }
+        });
+        console.log(`Updated product: ${plan.name}`);
     }
 
     return product;
