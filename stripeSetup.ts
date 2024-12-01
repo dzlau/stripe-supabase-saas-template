@@ -1,4 +1,8 @@
-require('dotenv').config();
+if (process.env.NODE_ENV === 'production') {
+    require('dotenv').config(); // Load from .env in production
+} else {
+    require('dotenv').config({ path: '.env.local' }); // Load from .env.local in development
+}
 
 const Stripe = require('stripe');
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
