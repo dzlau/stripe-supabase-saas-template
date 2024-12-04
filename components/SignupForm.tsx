@@ -1,4 +1,3 @@
-
 "use client"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
@@ -17,6 +16,16 @@ export default function SignupForm() {
     return (
         <form action={formAction}>
             <div className="grid gap-2">
+                <Label htmlFor="name">Name</Label>
+                <Input
+                    id="name"
+                    type="text"
+                    placeholder="John Doe"
+                    name="name"
+                    required
+                />
+            </div>
+            <div className="grid gap-2 mt-2">
                 <Label htmlFor="email">Email</Label>
                 <Input
                     id="email"
