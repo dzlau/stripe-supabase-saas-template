@@ -114,7 +114,12 @@ Run the following command to forward Stripe events to your local server:
 npm run stripe:listen
 ```
 
-This command starts the Stripe CLI in listening mode and forwards incoming webhook events to `http://localhost:3000/webhook/stripe`. 
+This command starts the Stripe CLI in listening mode and forwards incoming webhook events to `http://localhost:3000/webhook/stripe`.
+
+3. **Add the webhook signing secret**  
+`stripe listen` prints a signing secret that starts with `whsec_`. Add it to `.env` as `STRIPE_WEBHOOK_SECRET`. The webhook route rejects any request that is not signed with this secret, so nobody else can send fake events to your app.
+
+For production, add an endpoint for `YOUR_PUBLIC_URL/webhook/stripe` in the [Stripe dashboard](https://dashboard.stripe.com/webhooks) and set `STRIPE_WEBHOOK_SECRET` to that endpoint's signing secret.
 
 ## Deploy on Vercel
 
